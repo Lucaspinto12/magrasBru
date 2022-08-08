@@ -17,7 +17,7 @@ $consulta->setNomeEvento($nomeEvento);
 $consulta->setDiaEvento($diaEvento);
 $consulta->setHoraEvento($horaEvento);
 $consulta->setPago($pago);
-$consulta->inserir_consulta();
+$consulta->alterar_consulta();
         
 }      
 

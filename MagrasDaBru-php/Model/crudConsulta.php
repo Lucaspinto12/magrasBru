@@ -8,7 +8,9 @@ class crud {
   public $email;    
   public $senha;
   public $nomeEvento;    
-  public $dataEvento;
+  public $diaEvento;
+  public $horaEvento;    
+  public $pago;
   
   public function setEmail($email)
    {
@@ -30,14 +32,24 @@ class crud {
     return $this->nomeEvento;
   
    }
-   public function setDataEvento($dataEvento)
+   public function setDiaEvento($diaEvento)
    {
-    $this->dataEvento = $dataEvento;
+    $this->diaEvento = $diaEvento;
    }
 
-  public function getDataEvento()
+  public function getDiaEvento()
    {
-    return $this->dataEvento;
+    return $this->diaEvento;
+  
+   }
+   public function setHoraEvento($horaEvento)
+   {
+    $this->horaEvento = $horaEvento;
+   }
+
+  public function getHoraEvento()
+   {
+    return $this->horaEvento;
   
    }
   
@@ -49,6 +61,16 @@ class crud {
    public function getSenha()
    {
     return $this->senha;
+  
+   }
+   public function setPago($pago)
+   {
+    $this->pago = $pago;
+   }
+   
+   public function getPago()
+   {
+    return $this->pago;
   
    }
      
@@ -83,13 +105,64 @@ class crud {
 
 }
 function inserir_consulta(){ 
+  $horaEvento= $this->getHoraEvento();
 
-  $conn= conectar();   
 
-  $sql = "INSERT INTO consulta (nome,data_consulta) values('".$this->getNomeEvento()."','".$this->getDataEvento()."')";
+  $conn= conectar(); 
+
+  $consulta_horario = mysqli_query($conn, "SELECT * FROM consulta WHERE hora_consulta = '$horaEvento'"); 
+
+
+  if(!mysqli_num_rows($consulta_horario) == 0){
+    echo"<script language='javascript' type='text/javascript'>alert('Consulta não pode ser marcada, pois ja possui horario');window.location.href='../view/agenda_sol.php';</script>";
+  }else{
+  $sql = "INSERT INTO consulta (nome,dia_consulta,hora_consulta) values ('".$this->getNomeEvento()."','".$this->getDiaEvento()."','".$this->getHoraEvento()."')";
    mysqli_query($conn,$sql);   
 
    echo"<script language='javascript' type='text/javascript'>alert('Consulta marcada');window.location.href='../view/agenda_sol.php';</script>";
  }
- 
+}
+
+function alterar_consulta(){
+
+  $conn= conectar(); 
+
+  $nomeEvento= $this->getNomeEvento();
+  $diaEvento = $this->getMarca();
+  $horaEvento= $this->getHoraEvento();
+  $pago= $this->getPreco();
+  $IdConsulta= $this->getIdConsulta();
+  
+  $pega_produto = mysqli_query($conn, "SELECT * FROM produto WHERE idProduto= '$idProduto'");
+
+       if(mysqli_num_rows($pega_produto) == 0){
+
+      echo "<script language='javascript' type='text/javascript'>alert('Este Produto não esta cadastrado em nossos registros');window.location.href='../View/alterarProduto.php'</script>";
+
+      }else{		
+
+  
+        $result_Produto = ("UPDATE produto SET nome = '".$nome."', marca = '".$marca."', preco = '".$preco."', quantidade = '".$quantidade."' WHERE idProduto = '".$idProduto."'");
+
+       mysqli_query($conn,$result_Produto);
+
+           if(mysqli_affected_rows($conn) != 0){
+          echo "
+              <script language='javascript' type='text/javascript'>alert('Produto alterada com sucesso!');window.location.href='../View/produto.php'</script>";
+               
+          
+           }else{
+                echo " 
+                 <script language='javascript' type='text/javascript'>alert('Nao foi possivel alterar Produto');window.location.href='../View/alterarProduto.php'</script>";
+                   
+                
+                   
+            }
+
+
+      }
+
+
+}
+
 }

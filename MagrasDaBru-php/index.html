@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <link rel="stylesheet" href="estilo.css">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Login</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Login</h2>
+        <form method="POST" action="Controller/controller_logar.php">
+            <div class="input-field">
+                <input type="text" id="email" name="email" required="required" placeholder="alguma coisa">
+                <label for="nome">Usuario:</label>
+            </div>
+
+            <div class="input-field">
+                <input type="password" id="senha" name="senha" required="required" placeholder="alguma coisa">
+                <label for="senha">Senha:</label>
+            </div>
+
+            <div class="center">
+                <button name="botao">Entrar</button>
+            </div>
+        </form>
+       
+    </div>
+</body>
+</html>
