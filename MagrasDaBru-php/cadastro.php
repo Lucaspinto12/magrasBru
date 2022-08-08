@@ -14,183 +14,172 @@ session_start();
 		}else{
 		
 ?>
-<html>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="ocultar.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Cadastro</title>
-    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon" />
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- CSS only -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</head>
+<link rel="stylesheet" href="teste.css">
 <body>
-    <nav class="navbar navbar-light fixed-top" style="background-color: #BA55D3;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Magras da Bru</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="offcanvas offcanvas-end" style="background-color: white;" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Magras da Bru</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<form  class="form-horizontal" method="POST" action="Controller/controller_cadastrar_cliente.php">
+<div  class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+       
+        <div class="col-md-5">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Ficha de avaliação</h4>
+                </div>
+                <div class="row mt-3 ">
+                    <div class="col-md-6"><label class="labels">Nome</label><input type="text" class="form-control" placeholder="Nome" value=""></div>
+                    <div class="col-md-3"><label class="labels">idade</label><input type="text" class="form-control" placeholder="idade" value=""></div>
+                    <div class="col-md-3"><label class="labels">Tipagem Sanguinea</label>  <select id="tipagem_sanguinea" name="tipagem_sanguinea" >
+        <option value=""></option>
+      <option value="A+">A+</option>
+      <option value="A-">A-</option>
+      <option value="B+">B+</option>
+      <option value="B-">B-</option>
+      <option value="B-">B-</option>
+      <option value="AB+">AB+</option>
+      <option value="AB-">AB-</option>
+      <option value="0-">O-</option>
+      <option value="O+">0+</option>
+    </select></div>
+    <div class="col-md-6"><label class="labels">Estado Civil</label>   <select required id="Estado Civil" name="Estado Cittvil" class="form-control">
+        <option value=""></option>
+      <option value="Solteiro(a)">Solteiro(a)</option>
+      <option value="Casado(a)">Casado(a)</option>
+      <option value="Divorciado(a)">Divorciado(a)</option>
+      <option value="Viuvo(a)">Viuvo(a)</option>
+    </select></div>
+    <label class=" mt-2 labels" for="radios">Sexo <h11>*</h11></label><br>
+ 
+    <label required="" class=" mt-4 radio-inline" for="radios-0" >
+      <input name="sexo" id="sexo" value="feminino" type="radio" >
+      Feminino
+    </label> 
+    <label class="mt-4 radio-inline" for="radios-1">
+      <input name="sexo" id="sexo" value="masculino" type="radio" >
+      Masculino
+  
+                      
+
+                  </div>
+                 
+                <div class="row mt-3 ">
+                <div class="col-md-12"><label class="labels">Email</label> <input id="prependedtext" name="email" class="form-control" placeholder="email@email.com" required="" type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" ></div>
+                <div class="col-md-12"><label class="labels">Telefone</label>  <input id="prependedtext" name="prependedtext" class="form-control" placeholder="XX XXXXX-XXXX" type="text" maxlength="13"  pattern="\[0-9]{2}\ [0-9]{4,6}-[0-9]{3,4}$"
+      OnKeyPress="formatar('## #####-####', this)"></div>
+                <div class="col-md-12"><label class="labels">Profissão</label><input id="profissao" name="profissao" type="text" placeholder="Profissão" class="form-control input-md" required=""></div>
+                <div class="row-3 d-flex justify-content-between align-items-center mb-3">
+                    <div class="col-md-6"><label class="labels">Endereço</label> <input id="rua" name="rua" class="form-control" placeholder="Endereço" required=""  type="text"></div>
+                    <div class="col-md-5"><label class="labels">Cep</label><input type="text" class="form-control" placeholder="Cep" value=""></div>
+                  </div>
+                  <div class="row-3 d-flex justify-content-between align-items-center mb-3">
+                    <div class="col-md-6"><label class="labels">bairro</label> <input id="rua" name="estado" class="form-control" placeholder="estado" required=""  type="text"></div>
+                  <div class="col-md-5"><label class="labels">Estado</label><input type="text" class="form-control" placeholder="estado" value=""></div>
+        </div>
+                  <div class="row-3 d-flex justify-content-between align-items-center mb-3">
+                    <div class="col-md-6"><label class="labels">Peso</label> <input type="number" class="form-control" placeholder="peso" value=""></div>
+                    <div class="col-md-5"><label class="labels">Kg</label><input type="number" class="form-control" placeholder="kg" value=""></div>
+                  </div>
+                  
+    
+    <div class=" col-md-2"><label class="labels">Tratamento estético anterior?</label> </div>
+
+  <div class="ml-4 d-flex justify-content-between align-items-center">
+  
+
+       
+        <label class="my-3 radio-inline" for="radios-0">
+      <input type="radio" name="tratamento_anterior" id="tratamento_anterior" value="nao"  >
+      Não
+    </label> 
+    <label class="my-3 radio-inline" for="radios-1">
+      <input type="radio" name="tratamento_anterior" id="tratamento_anterior" value="sim"  >
+      Sim
+    </label>
+   
+      
+     <div id="" class="col-md-10 ml-10"> <input  type="text" class=" form-control" placeholder="qual?" value=""></div>
+    
+    </div>
+    <div class="mt-2 col-md-2"><label class="labels">Uso de Medicamento?</label> </div>
+
+<div class=" ml-4 d-flex justify-content-between align-items-center">
+
+
+     
+      <label class="my-3 radio-inline" for="radios-0">
+    <input type="radio" name="uso_medicamento" id="uso_medicamento" value="nao"  >
+    Não
+  </label> 
+  <label class="my-3 radio-inline" for="radios-1">
+    <input type="radio" name="uso_medicamento" id="uso_medicamento" value="sim"  >
+    Sim
+  </label>
+ 
+    
+   <div id="" class="col-md-10 ml-10"> <input  type="text" class=" form-control" placeholder="qual?" value=""></div>
+  
+  </div>
+  <div class="mt-2 col-md-2"><label class="labels"> Alergia a algum Medicamento?</label> </div>
+
+<div class=" ml-4 d-flex justify-content-between align-items-center">
+
+
+     
+      <label class="my-3 radio-inline" for="radios-0">
+    <input type="radio" name="uso_medicamento" id="uso_medicamento" value="nao"  >
+    Não
+  </label> 
+  <label class="my-3 radio-inline" for="radios-1">
+    <input type="radio" name="uso_medicamento" id="uso_medicamento" value="sim"  >
+    Sim
+  </label>
+ 
+    
+   <div id="" class="col-md-10 ml-10"> <input  type="text" class=" form-control" placeholder="qual?" value=""></div>
+  
+  </div>
+                    <div class="mt-4 col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
+                    <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
+                </div>
+          
             </div>
-            <hr>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="cadastro.html">Cadastro</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Agenda
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-                    <li><a class="dropdown-item" href="#">Solange</a></li>
-            
-                    <li><a class="dropdown-item" href="#">Mari</a></li>
-                    <li>
-                
-                    </li>
-                    <li><a class="dropdown-item" href="#">Bruna</a></li>
-                  </ul>
-                </li>
-                
-        <form action="login.html">
-<input type="submit" value="Voltar"><br>
-</form>
-              
-              </ul>
+        </div>
+        
+        <div class="col-md-4 ">
+            <div class="p-3 py-5 ">
+           
+                <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
+                <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
             </div>
-          </div>
-        </div>
-      </nav>
-      <br> <br> <br>
-      <form class="row g-3">
-        <div class="col-md-4">
-          <label for="inputEmail4" class="form-label">Nome</label>
-          <input type="text" class="form-control" id="inputNome" name="name" placeholder="Maria Eduarda ">
-        </div>
-        <div class="col-md-4">
-            <label for="inputEmail4" class="form-label">Idade</label>
-            <input type="number" class="form-control" id="inputIdade" name="idade" placeholder="30">
-          </div>
-        <div class="col-4">
-          <label for="inputAddress" class="form-label">Tipagem Sanguínea</label>
-          <input type="text" class="form-control" id="inputTipagem" name="tipagem" placeholder="A">
-        </div>
-        <div class="col-4">
-            <label for="inputAddress" class="form-label">Profissão</label>
-            <input type="text" class="form-control" id="inputProfissao" name="profissao" placeholder="Arquiteto">
-          </div>
-        <div class="col-4">
-          <label for="inputAddress2" class="form-label">Endereço</label>
-          <input type="text" class="form-control" id="inputEndereco" name="endereco" placeholder="Rua da Amizade">
-        </div>   
-		<div class="col-4">
-          <label for="inputAddress2" class="form-label">CPF</label>
-          <input type="text" class="form-control" id="inputCpf" name="cpf" placeholder="47447005860">
-        </div>	
-		<div class="col-4">
-          <label for="inputAddress2" class="form-label">Bairro</label>
-          <input type="text" class="form-control" id="inputBairro" name="bairro" placeholder="Terra-Nova">
-        </div>
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Cidade</label>
-          <input type="text" class="form-control" id="inputCidade" name="cidade" placeholder="Nova Odessa">
-        </div>
-		  <div class="col-md-4">
-          <label for="inputCity" class="form-label">Estado</label>
-          <input type="text" class="form-control" id="inputEstado" name="estado" placeholder="Sp">
-        </div>	  
-		<div class="col-md-4">
-          <label for="inputCity" class="form-label">Telefone</label>
-          <input type="text" class="form-control" id="inputTel" name="telefone" placeholder="19-98760-3023">
-        </div>
-		<div class="col-md-4">
-          <label for="inputCity" class="form-label">Celular</label>
-          <input type="text" class="form-control" id="inputCel" name="celular" placeholder="(19)99129111">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Data de Nasc</label>
-          <input type="text" class="form-control" id="inputDate" name="dataNasc" placeholder="DD/MM/AAAA">
-        </div>
-
-        
-       <div class="col-md-4">
-          <label for="inputState" class="form-label">Estado Civil</label>
-          <select id="inputEstadoCivil" class="form-select">
-          <option selected name="">...</option>
-            <option  name="solteiro">Solteiro(a)</option>
-            <option name="casado">Casado(a)</option>
-            <option name="viuvo">Viuvo(a)</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputState" class="form-label">Sexo</label>
-          <select id="inputSexo" class="form-select">
-          <option selected name="">...</option>
-            <option  name="masculino">Masculino</option>
-            <option name="feminino">Feminino</option>
-          </select>
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail" name="email" placeholder="nome@gmail.com">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Emergência</label>
-          <input type="text" class="form-control" id="inputEmergencia" name="emergencia" placeholder="(19)99129111">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Queixa</label>
-          <input type="text" class="form-control" id="inputQueixa" name="queixa" placeholder="dor">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Duração</label>
-          <input type="text" class="form-control" id="inputDuracao" name="duracao" placeholder="2 semanas">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Peso</label>
-          <input type="text" class="form-control" id="inputPeso" name="peso" placeholder="75KG">
-        </div>
-
-        <div class="col-md-4">
-          <label for="inputCity" class="form-label">Altura</label>
-          <input type="text" class="form-control" id="inputAltura" name="altura" placeholder="1,80m">
-        </div>
-        <div class="col-md-4">
-
-        
-        <div class="col-12">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck">
-            <label class="form-check-label" for="gridCheck">
-              Check me out
-            </label>
-          </div>
-        </div>
-        <div class="col-12">
-          <button type="submit" class="btn btn-primary">Cadastrar</button>
         </div>
         
-      </form>
+    </div>
+    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
+    <br>
+</div>
 
+</div>
+</div>
+<div>
+   
+        </from>
+        
+    
 </body>
-
 </html>
 <?php }?>

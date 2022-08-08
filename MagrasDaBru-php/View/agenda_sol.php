@@ -83,50 +83,59 @@
         <h1>Agenda Sol</h1>
       </div>
     </div>
-    <div id="novoEvento" class="row my-2 mx-1 py-2 border rounded">
-      <div class="col-12">
-        <form action="../Controller/controller_cadastrar_consulta.php" method="POST" id="formNovoEvento">
-          <div class="row">
-            <div class="col-12">
-              <h2>Nova Consulta</h2>
-            </div>
-          </div>
-          <div class="row g-3">
-            <div class="col-12">
+ <!-- Inicio Modal cadastrar usuario -->
+ <div class="modal fade" id="cadUsuarioModal" tabindex="-1" aria-labelledby="cadUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cadUsuarioModalLabel">Marcar consulta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <span id="msgAlertaErro"></span>
+                    <form action="../Controller/controller_cadastrar_consulta.php" method="POST" class="row g-3" id="cad-usuario-form">
+
+                    <div class="col-12">
               <label for="nomeEvento" class="form-label">Nome do paciente</label>
               <input type="text" name="nomeEvento" id="nomeEvento" class="form-control" required="">
             </div>
             <div class="col-12">
-              <label for="dataEvento" class="form-label">Data da consulta</label>
-              <input type="datetime-local" name="dataEvento" id="dataEvento" class="form-control" required="">
+              <label for="dataEvento" class="form-label">Dia da consulta</label>
+              <input type="date" name="diaEvento" id="diaEvento" class="form-control" required="">
+            </div>
+            <div class="col-12">
+              <label for="dataEvento" class="form-label">Hora da consulta</label>
+              <input type="time" name="horaEvento" id="horaEvento" class="form-control" required="">
             </div>
             <div class="col-12">
               <label for="dataEvento" class="form-label">Preço</label>
               <input type="text" name="preco" id="preco" class="form-control" required="">
             </div>
-            <div class="col-6"><button type="button" class="btn btn-danger w-100" id="buttonCancelar">Cancelar</button></div>
-            <div class="col-6"><button name="botao" type="submit" class="btn btn-primary w-100">Salvar</button></div>
-          </div>
-        </form>
-      </div>
+                        <div class="col-12">
+                            <input type="submit" name="botao" class="btn btn-outline-success btn-sm" id="cad-usaurio-btn" value="Cadastrar">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- Fim Modal cadastrar usuario -->
     <div class="row">
+      
       <div class="col">
-        <h2>
-          Agenda
-        </h2>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn btn-success" id="buttonNovoEvento">Novo Evento</button>
+      <button type="button" class="btn btn-outline-success btn-sm" data-bs-toggle="modal" data-bs-target="#cadUsuarioModal">Cadastrar</button>
       </div>
     </div>
     <div class="row">
       <div class="col-12">
-        <table class="table">
-          <thead>
-            <th scope="col">Id</th>
+      <table class="table table-striped">
+      <thead class="table-success">
+                    <th scope="col">Id</th>
             <th scope="col">Nome do Paciente</th>
-            <th scope="col">Data da consulta</th>
+            <th scope="col">Dia da consulta</th>
+            <th scope="col">Horario da consulta</th>
             <th scope="col">Pago</th>
             <th scope="col">Ação</th>
           </thead>
@@ -137,7 +146,7 @@
     $conn= conectar();  
     
 
-  $consulta= "SELECT * FROM consulta ORDER BY data_consulta";
+  $consulta= "SELECT * FROM consulta ORDER BY dia_consulta";
     
 	$resultadoConsutla = mysqli_query($conn, $consulta);
         
@@ -147,11 +156,14 @@
                   <tr>
                   <th><?php echo $rowConsulta['idConsulta'];?></th>
                   <td><?php echo $rowConsulta['nome'];?></td>
-                  <td><?php echo $rowConsulta['data_consulta'];?></td>
+                  <td><?php echo $rowConsulta['dia_consulta'];?></td>  
+                  <td><?php echo $rowConsulta['hora_consulta'];?></td>
+
                   <td><?php echo $rowConsulta['pago'];?></td>
                   <td>
-                    <button type="button" class="button green"><a href="">Editar</button>
-                    <button type="button" class="button red"  >Excluir</button>
+                    <button type="button" class="button green">Visualizar</button>
+                    
+                    <button type="button" class="button red"><a href="">Excluir</button>
                   </td>
                   </tr>
 
@@ -161,6 +173,7 @@
       </div>
     </div>
   </div>
+  
   <script src="agenda.js"></script>
 </body>
 </html>
