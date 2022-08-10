@@ -165,4 +165,33 @@ function alterar_consulta(){
 
 }
 
+    function visualizar_consulta(){
+        $horaEvento= $this->getHoraEvento();
+
+        $conn= conectar();
+// Incluir a conexao com o banco de dados
+        include_once "conexao.php";
+
+        if (!empty($idConsulta)) {
+            $query_consulta = "SELECT idConsulta, nome, dia_consulta,
+            hora_consulta, pago
+            FROM consulta 
+            WHERE idConsulta=:idConsulta LIMIT 1";
+            $result_consulta = $conn->prepare($query_consulta);
+            $result_consulta->bindParam(':idConsulta', $idConsulta);
+            $result_consulta->execute();
+
+            if (($result_consulta) and ($result_consulta->rowCount() != 0)) {
+                $row_consulta = $result_consulta->fetch(PDO::FETCH_ASSOC);
+                $retorna = ['status' => true, 'dados' => $row_consulta];
+            } else {
+                $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];
+            }
+        } else {
+            $retorna = ['status' => false, 'msg' => "<div class='alert alert-danger' role='alert'>Erro: Nenhum usuário encontrado!</div>"];
+        }
+
+        echo json_encode($retorna);
+
+    }
 }
